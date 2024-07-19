@@ -99,19 +99,40 @@ def q6(f0, f1):
 #q6('1','2')
 
 def q7(lst):
-    '''
-    Return the first duplicate value in the given list.
+    '''Return the first duplicate value in the given list.
     For example, if given [5,7,9,1,3,7,9,5], the returned value should
-    be 7.
-    '''
-    pass
+    be 7.'''
+    '''mylist = []
+    for item in lst:    
+        mylist.append(item)
+        #print(item, mylist.count(item))
+        if (mylist.count(item) > 1):
+            return item'''
+
+    uniquelist = []
+    duplicatelist = []
+    for item in lst:
+        if item not in uniquelist:
+            uniquelist.append(item)
+        elif item not in duplicatelist:
+            duplicatelist.append(item)
+    return duplicatelist[0]
+
+#q7([5,7,9,1,3,7,9,5])
+    
+    
 
 def q8(strng):
     '''
     Given a sentence as a string with words being separated by a single space,
     return the length of the shortest word.
     '''
-    pass
+    mylist = strng.split()
+    length = 9999
+    for word in mylist:
+        if len(word) < length:
+            length = len(word)
+    return length
 
 def q9(strng):
     '''
@@ -121,7 +142,26 @@ def q9(strng):
     'hell9oworld7', the returned character should be 'a' which has
     the ascii value of 97.
     '''
-    pass
+    # create list of characters
+    charlist = list(strng)
+    print(charlist)
+
+    # iterate through list and grab numbers
+    numlist = []
+    for character in charlist:
+        if character.isnumeric():
+            numlist.append(character)
+    print(numlist)
+
+    # join number list and typecast as integer
+    integer = int(''.join(numlist))
+    print(integer)
+
+    # turn integer into character using ascii
+    print("'{}'".format(chr(integer)))
+    return "{}".format(chr(integer))
+
+#q9('hell9oworld7')
 
 def q10(arr):
     '''
@@ -129,4 +169,14 @@ def q10(arr):
     the first non-consecutive value. If all values are consecutive, return
     None. For example, given [1,2,3,4,6,7], the returned value should be 6. 
     '''
-    pass
+    '''print(arr)
+    prev = arr[0] - 1
+    for item in arr:
+        print('Does', item, '=', prev + 1)
+        if item != prev + 1:
+            return item
+        prev = item
+    return None'''
+    for i in range(1, len(arr) - 1):
+        if arr[i] != arr[i - 1] + 1:
+            return arr[i]
